@@ -3,9 +3,30 @@
 
 FeedSanctum is an RSS aggregator and REST API backend written in Go. Beyond CRUD endpoints for users, feeds, and subscriptions, it runs a background scraper that fans out across feeds on a timer, handles duplicate posts through Postgres constraints, and tolerates malformed feed dates. Built on Chi, sqlc, goose, and PostgreSQL, with JWT auth, refresh-token rotation, and graceful shutdown.
 
-Full OpenAPI 3.0 spec is included. Interactive reference is served at http://localhost:8081/docs whether run locally with `go run` or in Docker via `docker compose`.
+A live instance runs on Render. See Live Demo below to try it in your browser.
+
+Full OpenAPI 3.0 spec is included. Interactive reference is served by the API at `/docs` — [live](https://feedsanctum.onrender.com/docs), or locally at `http://localhost:8081/docs` when running with `go run` or Docker Compose.
 
 ---
+
+## 🌐 Live Demo
+
+**Try the API:** [https://feedsanctum.onrender.com/docs](https://feedsanctum.onrender.com/docs)
+
+**Demo credentials:**
+- Email: `demo@example.com`
+- Password: `feedsanctum-demo-2026`
+
+The demo account is pre-seeded with 4 RSS feeds (Hacker News, Wired, Ars Technica, and TechCrunch) and their scraped posts. Log in via `POST /api/v1/login` (or the **Authorize** button in Swagger UI) to explore authenticated endpoints.
+
+### Quick Start
+
+1. Open the [live API reference](https://feedsanctum.onrender.com/docs)
+2. Call `POST /api/v1/login` with the demo credentials. Copy the `access_token` and `refresh_token` from the response.
+3. Click **Authorize** in Swagger UI. Paste the access token into `bearerAuth` (no `Bearer ` prefix needed) and the refresh token into `refreshTokenAuth`.
+4. Try `GET /api/v1/feeds` or `GET /api/v1/posts` to see scraped data.
+
+No installation required.
 
 ## 🚀 Getting Started
 
@@ -65,7 +86,7 @@ go test -p 1 ./...
 
 ## API Documentation
 
-Interactive reference is served by the API itself at [`/docs`](http://localhost:8081/docs) — try endpoints directly in the browser.
+Interactive reference is served by the API itself at [`/docs`](http://localhost:8081/docs) or on the [live deployment](https://feedsanctum.onrender.com/docs).
 
 The full OpenAPI 3.0 spec is embedded in the binary from [`internal/docs/openapi.yaml`](./internal/docs/openapi.yaml).
 
@@ -98,6 +119,13 @@ Handlers explicitly define custom `requestParam` and `response` struct types rat
 - **Global per-IP+endpoint (60/min):** blunts general abuse and scripted scraping.
 - **Route-level per-IP on `/login` (5/min):** caps single-source brute force attempts.
 - **In-handler per-email on `/login` (8/min):** stops distributed attempts against one account, where each IP stays under its own limit but the target account receives hundreds of attempts.
+
+### 6. Scrape-on-Create with Periodic Reconciliation
+
+New feeds are scraped immediately in a background goroutine after the HTTP response is sent.
+- **Responsive UX:** A user adding a feed sees posts within seconds, not after the next tick.
+- **Failure isolation:** If the initial scrape fails (network, malformed feed), the feed is still created successfully; the ticker retries on the next cycle.
+- **Server-scoped context:** The scraper goroutine inherits the process context, so in-flight scrapes abort cleanly on shutdown rather than being cancelled the moment the HTTP handler returns.
 
 ---
 
@@ -140,6 +168,7 @@ graph TD
 - **Password Hashing:** `golang.org/x/crypto/argon2`
 - **OpenAPI/Swagger UI:** [OpenAPI 3.0](https://www.openapis.org/) / [Swagger UI](https://swagger.io/tools/swagger-ui/)
 - **Docker:** [Docker](https://www.docker.com/)
+- **Hosting:** [Render](https://render.com/) (compute) + [Neon](https://neon.tech/) (Postgres)
 
 ---
 
@@ -154,15 +183,15 @@ feedsanctum/
 │   ├── database/       # sqlc-generated queries
 │   ├── docs/           # OpenAPI spec embed
 │   ├── handlers/       # HTTP handlers and middleware
+│   ├── integration/    # integration tests
 │   ├── scraper/        # background feed scraper
-│   └── testingutils/   # shared test suite  
+│   └── testingutils/   # shared test suite
 ├── sql/
 │   ├── migrations/     # goose migrations
 │   └── queries/        # sqlc source SQL
 ├── docker-compose.yml
 └── README.md
 ```
----
 
 ## API Endpoints Summary
 
@@ -172,7 +201,7 @@ The full spec is defined in [`internal/docs/openapi.yaml`](./internal/docs/opena
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `POST` | `/api/v1/register` | Register a new user account |
-| `POST` | `/api/v1/login` | Authenticate user and receive JWT access token |
+| `POST` | `/api/v1/login` | Authenticate user and receive access/refresh tokens |
 | `POST` | `/api/v1/refresh` | Rotate refresh token and issue new access token |
 | `POST` | `/api/v1/logout` | Revoke refresh token |
 | `GET` | `/api/v1/feeds` | List all registered RSS feeds |
