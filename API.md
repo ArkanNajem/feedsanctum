@@ -1,5 +1,6 @@
 # API Documentation
-> **Interactive reference:** [http://localhost:8081/docs](http://localhost:8081/docs) (local)
+
+> **Interactive reference:** [live API reference](https://feedsanctum.onrender.com/docs) or [local](http://localhost:8081/docs)
 
 ## Endpoints Summary
 
@@ -8,7 +9,7 @@
 | :--- | :--- | :--- | :--- |
 | `POST` | [`/api/v1/register`](#register-user) | Create a new user account | No |
 | `POST` | [`/api/v1/login`](#login-user) | Authenticate and obtain tokens | No |
-| `POST` | [`/api/v1/refresh`](#refresh-tokens) | Rotate refresh token and get a new access token | Yes (Refresh token) |
+| `POST` | [`/api/v1/refresh`](#refresh-tokens) | Rotate refresh token and get a new access token | Yes (Refresh Token) |
 | `POST` | [`/api/v1/logout`](#logout-user) | Revoke a refresh token | Yes (Refresh Token) |
 | `GET` | [`/api/v1/me`](#get-current-user) | Fetch the authenticated user's profile | Yes (Access Token) |
 | `PATCH` | [`/api/v1/me`](#update-current-user) | Partially update the authenticated user's profile | Yes (Access Token) |
@@ -43,13 +44,24 @@ All endpoints are rate-limited by client IP and endpoint path. Authentication en
 
 Exceeding any limit returns:
 
-#### `429 Too Many Requests`
+##### `429 Too Many Requests`
 ```json
 { "error": "Rate limit reached" }
 ```
 ---
 
 ## Authentication & Users
+
+### Authentication
+
+All protected routes require `Authorization: Bearer <token>` in the request header.
+
+- **Access token:** obtained from `POST /api/v1/login`. Short-lived (1 hour). Used on all `/me`, `/feeds` (POST), `/follows`, and `/posts` endpoints.
+- **Refresh token:** obtained from `POST /api/v1/login`. Used only on `POST /api/v1/refresh` and `POST /api/v1/logout` to rotate or revoke the session.
+
+To authenticate in Swagger UI, click **Authorize** and paste both tokens into their respective fields.
+
+---
 
 ### Register User
 
@@ -679,7 +691,7 @@ Returned when a database error occurs while fetching the feed.
 
 ### Create Feed
 
-Registers a new RSS feed in the system within a transaction and automatically creates a feed follow entry with a custom label for the authenticated user.
+Registers a new RSS feed in the system within a transaction and automatically creates a feed follow entry with a custom label for the authenticated user. The feed is scraped immediately after the response is sent.
 
 * **URL:** `/api/v1/feeds`
 * **Method:** `POST`
@@ -694,7 +706,7 @@ Registers a new RSS feed in the system within a transaction and automatically cr
 
 | Field | Type | Required | Constraints | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `url` | string | Yes | Valid URL format | The RSS/Atom feed URL. |
+| `url` | string | Yes | Valid URL format | The RSS feed URL. |
 | `name` | string | Yes | 1–45 chars, no control characters | Custom name/label for the feed follow. |
 
 **Example Request:**
