@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/auth"
-	"github.com/MhdFiras-3/feedsanctum/internal/database"
+	"github.com/ArkanNajem/feedsanctum/internal/auth"
+	"github.com/ArkanNajem/feedsanctum/internal/database"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
 )

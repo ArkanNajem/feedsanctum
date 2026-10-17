@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/database"
-	"github.com/MhdFiras-3/feedsanctum/internal/scraper"
+	"github.com/ArkanNajem/feedsanctum/internal/database"
+	"github.com/ArkanNajem/feedsanctum/internal/scraper"
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	"github.com/lib/pq"

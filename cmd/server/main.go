@@ -12,10 +12,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/database"
-	"github.com/MhdFiras-3/feedsanctum/internal/docs"
-	"github.com/MhdFiras-3/feedsanctum/internal/handlers"
-	"github.com/MhdFiras-3/feedsanctum/internal/scraper"
+	"github.com/ArkanNajem/feedsanctum/internal/database"
+	"github.com/ArkanNajem/feedsanctum/internal/docs"
+	"github.com/ArkanNajem/feedsanctum/internal/handlers"
+	"github.com/ArkanNajem/feedsanctum/internal/scraper"
 	swgui "github.com/swaggest/swgui/v5emb"
 
 	"github.com/go-chi/chi/v5"

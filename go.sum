@@ -1,3 +1,5 @@
+github.com/MhdFiras-3/feedsanctum v0.0.0-20261012113900-20f96f8cbd6f h1:jMzQpSV8i6TNM8vY5qOaFu2SjyhacdVXfr+yDP1OrB8=
+github.com/MhdFiras-3/feedsanctum v0.0.0-20261012113900-20f96f8cbd6f/go.mod h1:TGrb568zlgldpm8zY+z8EqZKIeGGMMaMX2RIcF37dFM=
 github.com/alexedwards/argon2id v1.0.0 h1:wJzDx66hqWX7siL/SRUmgz3F8YMrd/nfX/xHHcQQP0w=
 github.com/alexedwards/argon2id v1.0.0/go.mod h1:tYKkqIjzXvZdzPvADMWOEZ+l6+BD6CtBXMj5fnJppiw=
 github.com/andybalholm/brotli v1.2.2 h1:HzTuoo2ErYQqf5qvcJInB8uvqSVxRttzkFexPWtnceM=

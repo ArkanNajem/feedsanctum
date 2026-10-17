@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/scraper"
+	"github.com/ArkanNajem/feedsanctum/internal/scraper"
 )
 
 func TestFetchFeed(t *testing.T) {

@@ -1,8 +1,9 @@
-module github.com/MhdFiras-3/feedsanctum
+module github.com/ArkanNajem/feedsanctum
 
 go 1.25.7
 
 require (
+	github.com/MhdFiras-3/feedsanctum v0.0.0-20261012113900-20f96f8cbd6f
 	github.com/alexedwards/argon2id v1.0.0
 	github.com/go-chi/chi/v5 v5.3.1
 	github.com/go-chi/cors v1.2.2
