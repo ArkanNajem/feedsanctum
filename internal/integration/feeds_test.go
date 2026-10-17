@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/database"
-	"github.com/MhdFiras-3/feedsanctum/internal/handlers"
+	"github.com/ArkanNajem/feedsanctum/internal/database"
+	"github.com/ArkanNajem/feedsanctum/internal/handlers"
 	"github.com/google/uuid"
 )
 

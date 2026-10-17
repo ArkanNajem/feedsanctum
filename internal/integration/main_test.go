@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/handlers"
-	"github.com/MhdFiras-3/feedsanctum/internal/testingutils"
+	"github.com/ArkanNajem/feedsanctum/internal/handlers"
+	"github.com/ArkanNajem/feedsanctum/internal/testingutils"
 	_ "github.com/lib/pq"
 )
 

@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MhdFiras-3/feedsanctum/internal/auth"
-	"github.com/MhdFiras-3/feedsanctum/internal/handlers"
+	"github.com/ArkanNajem/feedsanctum/internal/auth"
+	"github.com/ArkanNajem/feedsanctum/internal/handlers"
 	"github.com/google/uuid"
 )
 
