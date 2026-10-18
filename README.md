@@ -1,5 +1,5 @@
 # FeedSanctum
-[![Tests](https://github.com/MhdFiras-3/feedsanctum/actions/workflows/test.yml/badge.svg)](https://github.com/MhdFiras-3/feedsanctum/actions/workflows/test.yml)
+[![Tests](https://github.com/ArkanNajem/feedsanctum/actions/workflows/test.yaml/badge.svg)](https://github.com/ArkanNajem/feedsanctum/actions/workflows/test.yaml)
 
 FeedSanctum is an RSS aggregator and REST API backend written in Go. Beyond CRUD endpoints for users, feeds, and subscriptions, it runs a background scraper that fans out across feeds on a timer, handles duplicate posts through Postgres constraints, and tolerates malformed feed dates. Built on Chi, sqlc, goose, and PostgreSQL, with JWT auth, refresh-token rotation, and graceful shutdown.
 
@@ -42,7 +42,7 @@ No installation required.
 Clone the repository and create a `.env` file in the root directory:
 
 ```bash
-git clone https://github.com/MhdFiras-3/feedsanctum.git
+git clone https://github.com/ArkanNajem/feedsanctum.git
 cd feedsanctum
 ```
 

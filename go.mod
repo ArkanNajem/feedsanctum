@@ -1,9 +1,8 @@
 module github.com/ArkanNajem/feedsanctum
 
-go 1.25.7
+go 1.26.0
 
 require (
-	github.com/MhdFiras-3/feedsanctum v0.0.0-20261012113900-20f96f8cbd6f
 	github.com/alexedwards/argon2id v1.0.0
 	github.com/go-chi/chi/v5 v5.3.1
 	github.com/go-chi/cors v1.2.2
@@ -23,7 +22,7 @@ require (
 	github.com/vearutop/statigz v1.4.0 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.54.0 // indirect
+	golang.org/x/crypto v0.56.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 )
