@@ -32,7 +32,7 @@ No installation required.
 
 ### Prerequisites
 
-- [Go](https://go.dev/doc/install) (v1.25 or later)
+- [Go](https://go.dev/doc/install) (v1.26 or later)
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 - [goose](https://github.com/pressly/goose) for database migrations
 
@@ -159,7 +159,7 @@ graph TD
 
 ## 🛠️ Tech Stack
 
-- **Language:** [Go 1.25](https://go.dev/)
+- **Language:** [Go 1.26](https://go.dev/)
 - **HTTP Router:** [Chi Router](https://github.com/go-chi/chi)
 - **Rate Limiting:** [httprate](https://github.com/go-chi/httprate)
 - **Database:** [PostgreSQL](https://www.postgresql.org/)
